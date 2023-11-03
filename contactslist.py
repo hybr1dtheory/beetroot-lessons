@@ -57,6 +57,14 @@ def search_number(contacts):
 # main program
 contacts_list = []
 while True:
+    if len(contacts_list) > 0:
+        for contact in sorted(contacts_list, key=lambda x: x["name"]):
+            name, number = contact.values()
+            print(name, number)
+        print('\n')
+    else:
+        print('Contact list is empty\n')
+
     print('Select the option you want to use (enter an integer):')
     choice = input("""1 - add new contact \n2 - delete contact \n3 - search contact by name
 4 - search contact by phone number \n5 - close the program\n""")
