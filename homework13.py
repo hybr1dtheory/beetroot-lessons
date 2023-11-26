@@ -21,11 +21,12 @@ def choose_func(nums: list, f1, f2):
         return f2(nums)
 
 
-def mult_all(nums):
-    total = 1
-    for n in nums:
-        total *= n
-    return total
+def square_nums(nums: list):
+    return [i**2 for i in nums]
+
+
+def remove_negatives(nums: list):
+    return [i for i in nums if i >= 0]
 
 
 # Testing
@@ -33,6 +34,6 @@ print('Number of Local variables: ', len(func()))
 qfunc = create_qfunc(1, 2, 5)
 print("Result of function x^2 + 2x + 5 when x = 5: ", qfunc(5))
 nums1 = [i for i in range(1, 10)]
-nums2 = [i for i in range(-1, 6)]
-print('Result of task 3 if all numbers are positive: ', choose_func(nums1, sum, mult_all))
-print('Result of task 3 if there are negative nums: ', choose_func(nums2, sum, mult_all))
+nums2 = [i for i in range(-5, 6)]
+print('Result of task 3 if all numbers are positive: ', choose_func(nums1, square_nums, remove_negatives))
+print('Result of task 3 if there are negative nums: ', choose_func(nums2, square_nums, remove_negatives))
