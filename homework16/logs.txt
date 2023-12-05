@@ -1,0 +1,2 @@
+2023-12-6  0:36 ---> NotInRangeError for value 42 was raised with message: Value must be in range 50 <= 42 <= 100
+2023-12-6  0:40 ---> NotInRangeError for value 1 was raised with message: Value must be in range: 10 <= value <= 100
