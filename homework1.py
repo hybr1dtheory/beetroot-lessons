@@ -1,9 +1,9 @@
 # Task 2
 # Hello world!
-print("Hello world!")
+print("Hello world!\n")
 
 # Beetroot!
-print("Bee", "troot", sep="", end="!\n")
+print("Bee", "troot", sep="", end="!\n\n")
 
 # Python
 # is
