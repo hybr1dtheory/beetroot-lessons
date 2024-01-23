@@ -4,7 +4,7 @@ import asyncio
 from time import perf_counter
 
 
-async def factorial(num: int):  # alone runing - 20.0475s
+async def factorial(num: int):  # alone running - 20.0475s
     f = 1
     for i in range(1, num + 1):
         print("computing factorial...")
@@ -13,7 +13,7 @@ async def factorial(num: int):  # alone runing - 20.0475s
     print(f"Result of factorial function: {f}")
 
 
-async def generate_ascii(start: int):  # alone runing - 15.0943s
+async def generate_ascii(start: int):  # alone running - 15.0943s
     my_list = []
     for i in range(start, start + 15):
         print("Generating list...")
@@ -22,7 +22,7 @@ async def generate_ascii(start: int):  # alone runing - 15.0943s
     print(*my_list)
 
 
-async def just_wait():  # alone runing - 16.209s
+async def just_wait():  # alone running - 16.209s
     for i in range(20):
         print("Waiting...")
         await asyncio.sleep(0.8)
