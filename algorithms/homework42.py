@@ -99,11 +99,51 @@ class MyLinkedList:
         return del_node.value
 
     def insert(self, position: int, item):
-        """insert an item to the specified position in the list (0 < position <= list size)"""
-        if 0 < position <= self._size:
-            pass
+        """insert an item to the specified position in the list (0 < position < list size)"""
+        if 0 < position < self._size:
+            prev = self._head
+            for i in range(position - 1):
+                prev = prev.next
+            new_node = ListNode(item)
+            new_node.next = prev.next
+            prev.next = new_node
+            self._size += 1
         else:
-            raise ValueError("position must be in range: 0 < position <= list size")
+            raise IndexError("position must be in range: 0 < position < list size")
+
+    # implementation of slicing/indexing for my list
+    def __getitem__(self, ndx):
+        if isinstance(ndx, slice):
+            begin, end = ndx.start, ndx.stop
+            if begin < -self._size or begin >= self._size or end < -self._size or end >= self._size:
+                raise KeyError("index out of range")
+            if begin > end:
+                raise KeyError("start index must be less than or equal stop")
+            if begin < 0:
+                begin = self._size + begin
+            if end < 0:
+                end = self._size + end
+            new_list = MyLinkedList()
+            cur = self._head
+            counter = 0
+            while cur is not None:
+                if counter >= begin:
+                    new_list.append(cur.value)
+                if counter == end:
+                    break
+                cur = cur.next
+                counter += 1
+            return new_list
+        elif isinstance(ndx, int):
+            if ndx < -self._size or ndx >= self._size:
+                raise KeyError("index out of range")
+            index = ndx if ndx >= 0 else (self._size + ndx)
+            cur = self._head
+            for _ in range(index):
+                cur = cur.next
+            return cur.value
+        else:
+            raise TypeError("Incorrect index type")
 
 
 if __name__ == "__main__":
@@ -127,3 +167,7 @@ if __name__ == "__main__":
     print("After appending 100", my_list, "list size: ", my_list.get_size())
     my_list.append(111)
     print("After appending 111", my_list, "list size: ", my_list.get_size())
+    my_list.insert(1, 11)
+    print("After inserting 11 at 1 position:", my_list, "list size: ", my_list.get_size())
+    print("Indexing:", my_list[0], my_list[-1])
+    print("Slicing:", my_list[2:4])
